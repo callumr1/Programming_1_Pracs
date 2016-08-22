@@ -13,7 +13,7 @@ def main():
     def print_name(name,n):
         print(name[::n])
 
-    name = get_name()
+    name = get_name()  
 
 
 
