@@ -1,6 +1,6 @@
-
-lower = 10
-upper = 100
+def main():
+    lower = 10
+    upper = 100
 
 
 #print("Enter a number: {}-{} ".format(lower, upper))
@@ -24,3 +24,5 @@ def get_number(lower, upper):
             num_valid = True
 
 get_number(lower, upper)
+
+main()
