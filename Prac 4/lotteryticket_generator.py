@@ -1,19 +1,22 @@
 def main():
 
 
-    num = int(input("How many quick picks? "))
+    number_of_tickets = int(input("How many quick picks? "))
 
-    generate_tickets(num)
+    generate_tickets(number_of_tickets)
 
-
-def generate_tickets(num):
+def generate_tickets(number_of_tickets):
     import random
-    for x in range(1, num + 1):
+    for x in range(1, number_of_tickets + 1):
+        rangeMax = 45
+        rangeMin = 1
+        ticketMax = 7
+
         ticket = []
-        for y in range(1, 7):
-            number = random.randint(1, 45)
+        for y in range(1, ticketMax):
+            number = random.randint(rangeMin, rangeMax)
             while number in ticket:
-                number = random.randint(1, 45)
+                number = random.randint(rangeMin, rangeMax)
             ticket.append(number)
         print(sorted(ticket))
 
