@@ -5,6 +5,7 @@ Written by Callum Robertson
 
 
 def main():
+    #list_file = open("items.csv", "r")
     users_name = "Callum"
     print("Greetings {} and welcome to your shopping list!\n".format(users_name))
 
@@ -24,6 +25,12 @@ def main():
             menu_condition = str(input(">>>"))
         elif menu_condition == "3":
             print("Add or change an item from required to completed")
+            list_file = open("items.csv", "a")
+            new_item = str(input("Enter a new item: "))
+            new_item_price = float(input("Enter the cost of the new item: "))
+            item_importance = int(input("Enter the importance of the item on a scale of 1-3: "))
+            item_type = str(input("Is the item required or completed? "))
+            print(new_item,",", new_item_price, file=list_file)
             print(menu)
             menu_condition = str(input(">>>"))
 
