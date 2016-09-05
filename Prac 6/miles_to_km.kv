@@ -1,0 +1,10 @@
+BoxLayout:
+    orientation: 'vertical'
+    BoxLayout:
+        orientation: 'horizontal'
+        TextInput:
+            id: input_miles
+            text: 'Input miles here'
+            on_text:app.handle_calculate()
+        BoxLayout:
+            orientation: 'vertical'
