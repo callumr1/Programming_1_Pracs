@@ -16,13 +16,16 @@ def main():
 
     while menu_condition != "5":
         if menu_condition == "1":
-            required_items(list_file)
-            print("Required items and total price")
+            item_needed = ",r"
+            print("The Required Items on your Shopping list are:")
+            refine_items(list_file, item_needed)
             print(menu)
             menu_condition = str(input(">>>"))
 
         elif menu_condition == "2":
-            print("Completed items and total cost")
+            print("The Completed Items on your Shopping List are:")
+            item_needed = ",c"
+            refine_items(list_file, item_needed)
             print(menu)
             menu_condition = str(input(">>>"))
 
@@ -31,8 +34,7 @@ def main():
             new_item = str(input("Enter a new item: "))
             new_item_price = float(input("Enter the cost of the new item: "))
             item_importance = int(input("Enter the importance of the item on a scale of 1-3: "))
-            print("{},{},{}".format(new_item, new_item_price, item_importance))
-            list_file.close()
+            print("{},{},{},r".format(new_item, new_item_price, item_importance))
             print(menu)
             menu_condition = str(input(">>>"))
 
@@ -45,11 +47,12 @@ def main():
             menu_condition = str(input(">>>"))
 
 
-def required_items(list_file):
+def refine_items(list_file, item_needed):
     line_str = list_file.readline()
-    print(line_str)
+    if item_needed in line_str:
+        print(line_str)
     for line_str in list_file:
-        if ",r" in line_str:
+        if item_needed in line_str:
             print(line_str)
 
 
