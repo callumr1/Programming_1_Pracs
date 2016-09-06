@@ -12,33 +12,39 @@ def main():
     print("What would you like to do? Enter either 1, 2, 3 or 4 from the menu options below:")
     print(menu)
     menu_condition = str(input(">>>"))
+    # Items list
+    items = []
+    load_items(items)
 
     while menu_condition != "5":
         if menu_condition == "1":
-            list_file = open("items.csv", "r")
-            item_needed = ",r"
-            print("The Required Items on your Shopping list are:")
-            refine_items(list_file, item_needed)
+            print("The Required Items on your shopping list are:")
+            item_needed = "r"
+            refine_items(items, item_needed)
             print("\n")
             print(menu)
             menu_condition = str(input(">>>"))
 
         elif menu_condition == "2":
-            list_file = open("items.csv", "r")
             print("The Completed Items on your Shopping List are:")
-            item_needed = ",c"
-            refine_items(list_file, item_needed)
+            item_needed = "c"
+            refine_items(items, item_needed)
             print(menu)
             menu_condition = str(input(">>>"))
 
         elif menu_condition == "3":
-            list_file = open("items.csv", "a")
+            new_item = []
             print("Add an item")
-            new_item = str(input("Enter a new item: "))
+            new_item_name = str(input("Enter a new item: "))
             new_item_price = float(input("Enter the cost of the new item: "))
             item_importance = int(input("Enter the importance of the item on a scale of 1-3: "))
-            print("Added {} - ${} to your shopping list.".format(new_item, new_item_price))
-            print("{},{},{},r".format(new_item, new_item_price, item_importance), file=list_file)
+            print("Added {} - ${} to your shopping list.".format(new_item_name, new_item_price))
+            new_item.append(new_item_name)
+            new_item.append(new_item_price)
+            new_item.append(item_importance)
+            new_item.append("r")
+            items.append(new_item)
+            print(items)
             print(menu)
             menu_condition = str(input(">>>"))
 
@@ -55,11 +61,11 @@ def main():
             menu_condition = str(input(">>>"))
 
 
-def refine_items(list_file, item_needed):
-    line_str = list_file.readline()
+def refine_items(items, item_needed):
+    line_str = items
     if item_needed in line_str:
         print(line_str)
-    for line_str in list_file:
+    for line_str in items:
         if item_needed in line_str:
             print(line_str)
 
@@ -69,6 +75,13 @@ def change_item(list_file, item_name):
     if item_name in line_str:
         new_line_str = line_str[:-1]
         print(new_line_str)
+
+
+def load_items(items):
+    list_file = open("items.csv", "r")
+    for line in list_file:
+        new_line = line.strip().split(",")
+        items.append(new_line)
 
 
 main()
