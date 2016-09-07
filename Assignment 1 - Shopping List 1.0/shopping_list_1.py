@@ -1,6 +1,13 @@
 """
 CP1404 Assignment 1 - Shopping List 1.0
-Written by Callum Robertson
+Written by Callum Robertson, 7/09/2016
+
+This program read items from a .csv file and adds them to a shopping list. The user is able to add to this list, change
+items in the list, and view the required or completed items. Once the user chooses to exit the program will rewrite the
+new shopping list to the same .csv file.
+
+Link to GitHub repository:
+https://github.com/callumr1/Programming_1_Pracs/tree/master/Assignment%201%20-%20Shopping%20List%201.0
 """
 
 
@@ -103,9 +110,19 @@ def refine_items(items, item_needed):
         print(line_str)
     for line_str in items:
         if item_needed in line_str:
-            print(line_str)
+            item = line_str
+            print(item[:-1])
 
-
+"""
+Pseudocode for complete an item:
+for every item in items:
+    if itemName in item:
+        new_item_list = item - "r"
+        add "c" to new_item_list
+        remove item from items
+print " the item was changed to completed"
+add new_item_list to items
+"""
 def change_item(items, item_name):
     # Changes an item from required to completed
     global new_line_str
@@ -120,7 +137,15 @@ def change_item(items, item_name):
     for item in items:
         print(item)
 
+"""
+Pseudocode for load items:
+open items.csv
+for every line in list_file
+    new_line = line stripped and split(",")
+    add new_line to items
+close items.csv
 
+"""
 def load_items(items):
     # Loads all the items from items.csv at the beginning of the program
     list_file = open("items.csv", "r")
