@@ -26,14 +26,14 @@ def main():
 
     while menu_condition != "6":
         if menu_condition == "1":
-            print("The Required Items on your shopping list are:")
+            print("\nThe Required Items on your Shopping List are:")
             item_needed = "r"
             # Looks for the required items as item_needed = "r"
             refine_items(items, item_needed)
             menu_condition = print_menu(menu, menu_condition)
 
         elif menu_condition == "2":
-            print("The Completed Items on your Shopping List are:")
+            print("\nThe Completed Items on your Shopping List are:")
             item_needed = "c"
             # Looks for the completed items as item_needed = "r"
             refine_items(items, item_needed)
@@ -83,13 +83,11 @@ def add_item(items):
     # Function for adding a new item
     new_item = []
 
-    print("Add an item")
-
     # Get all the information for the new item
-    new_item_name = str(input("Enter a new item: "))
+    new_item_name = str(input("\nEnter a new item: "))
     new_item_price = str(input("Enter the cost of the new item: "))
     item_importance = str(input("Enter the importance of the item on a scale of 1-3: "))
-    print("Added {} - ${} to your shopping list.".format(new_item_name, new_item_price))
+    print("\nAdded {} - ${} to your shopping list.".format(new_item_name, new_item_price))
 
     # Add the new item to the items list
     new_item.append(new_item_name)
@@ -113,6 +111,7 @@ def refine_items(items, item_needed):
             item = line_str
             print(item[:-1])
 
+
 """
 Pseudocode for complete an item:
 for every item in items:
@@ -123,6 +122,8 @@ for every item in items:
 print " the item was changed to completed"
 add new_item_list to items
 """
+
+
 def change_item(items, item_name):
     # Changes an item from required to completed
     global new_line_str
@@ -137,6 +138,7 @@ def change_item(items, item_name):
     for item in items:
         print(item)
 
+
 """
 Pseudocode for load items:
 open items.csv
@@ -146,6 +148,8 @@ for every line in list_file
 close items.csv
 
 """
+
+
 def load_items(items):
     # Loads all the items from items.csv at the beginning of the program
     list_file = open("items.csv", "r")
