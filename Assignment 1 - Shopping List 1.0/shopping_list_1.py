@@ -49,11 +49,18 @@ def main():
             menu_condition = str(input(">>>"))
 
         elif menu_condition == "4":
-            list_file = open("items.csv", "a")
             print("Change an item from required to completed")
             print("What item would you like to change?")
             item_name = str(input(">>> "))
-            change_item(list_file, item_name)
+            change_item(items, item_name)
+            print(items)
+            print(menu)
+            menu_condition = str(input(">>>"))
+
+        elif menu_condition == "5":
+            list_file = open("items.csv", "w")
+            for item in items:
+                print(item, file=list_file)
 
         else:
             print("Please select from one of the 5 menu options: ")
@@ -70,11 +77,15 @@ def refine_items(items, item_needed):
             print(line_str)
 
 
-def change_item(list_file, item_name):
-    line_str = list_file.readline()
-    if item_name in line_str:
-        new_line_str = line_str[:-1]
-        print(new_line_str)
+def change_item(items, item_name):
+    global new_line_str
+    for item in items:
+        if item_name in item:
+            new_line_str = item[:-1]
+            new_line_str.append("c")
+            print(new_line_str)
+            items.remove(item)
+    items.append(new_line_str)
 
 
 def load_items(items):
@@ -82,6 +93,7 @@ def load_items(items):
     for line in list_file:
         new_line = line.strip().split(",")
         items.append(new_line)
+    list_file.close()
 
 
 main()
