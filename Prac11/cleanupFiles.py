@@ -33,7 +33,7 @@ for filename in os.listdir('.'):
 def get_fixed_filename(filename):
     for filename in os.listdir('.'):
         name_list = filename.split()
-        
+
         print(name_list)
 
 get_fixed_filename(filename)
