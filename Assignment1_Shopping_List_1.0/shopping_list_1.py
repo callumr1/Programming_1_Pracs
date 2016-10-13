@@ -108,9 +108,6 @@ def refine_items(items, item_needed):
             print('{:20} $ {:6.2f} {:>3}{}{}'.format(str(item[0]), float(item[1]), "(", int(item[2]), ")"))
             total_cost += float(item[1])
     print("{:20} $ {:6.2f}".format("The total cost is:", total_cost))
-    # if item_needed in line_str:
-    # item = line_str
-    # print(item[:-1])
 
 
 """
