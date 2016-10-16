@@ -21,8 +21,7 @@ def main():
     print(menu)
     menu_condition = str(input(">>>"))
     # Items list
-    items = []
-    load_items(items)
+    items = load_items()
 
     while menu_condition != "6":
         if menu_condition == "1":
@@ -148,14 +147,15 @@ close items.csv
 """
 
 
-def load_items(items):
+def load_items():
     # Loads all the items from items.csv at the beginning of the program
+    items = []
     list_file = open("items.csv", "r")
     for line in list_file:
         new_line = line.strip().split(",")
         items.append(new_line)
     list_file.close()
-
+    return items
 
 if __name__ == "__main__":
 

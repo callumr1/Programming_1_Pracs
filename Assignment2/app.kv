@@ -45,11 +45,15 @@ BoxLayout:
             orientation: 'vertical'
             Label:
                 id: details_bar
+                size_hint_y: 0.1
                 text: 'Details bar'
-            Label:
-                id: items_display
-
+            BoxLayout
+                orientation: 'vertical'
+                #this is where the items will be displayed
+                id: items_list_display
+                cols: 1
     Label:
         id: status_bar
+        size_hint_y: 0.1
         text: 'Click Items to mark them as complete'
 
