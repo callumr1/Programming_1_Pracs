@@ -3,8 +3,9 @@
 from item import Item
 
 class ItemList:
-    def __init__(self, name=""):
+    def __init__(self, name="", price=0, priority=1):
         self.items = []
+        self.items_as_lists = []
         self.name = name
 
     def add_item_lists(self, items_as_lists):
@@ -19,12 +20,11 @@ class ItemList:
             self.items.append(i)
 
 
-    def get_item_as_lists(self):
+    def get_item_as_lists(self, items_as_lists):
         """
         Get Items as lists
         """
 
-        items_as_lists = []
         for item in self.items:
             items_as_lists.append([item.name, item.price, item.priority])
         return items_as_lists
@@ -34,20 +34,32 @@ class ItemList:
         Gets an item by its name
         """
         for item in self.items:
-            if self.name in item:
+            if item.name == name:
                 return item
 
-    def add_item(self):
+    def add_new_item(self, name, price, priority, status):
         """
         Adds a single item object to the items list attributes
         """
+        new_item = [name, price, priority, status]
+        self.items_as_lists.append(new_item)
+        self.add_item_lists(self.items_as_lists)
 
-    def get_total_price(self, price):
+
+    def get_total_price(self):
         """
         Gets the total price of all the items
         """
-        total_cost = 0.0
-        total_cost += float(price)
+        total_price = 0.0
+        item_required = "r"
+        for item in self.items:
+            if item.status == item_required:
+                total_price += float(item.price)
+        return total_price
+
+
+
+
 
 
 

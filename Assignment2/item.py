@@ -1,9 +1,9 @@
 # create your Item class here
 
 class Item:
-    def __init__(self, name="", price=0, priority=1, status='r'):
+    def __init__(self, name="", price=0.0, priority=1, status='r'):
         self.name = name
-        self.price = price
+        self.price = float(price)
         self.priority = priority
         self.status = status
 
@@ -15,4 +15,4 @@ class Item:
         changes an item from required to complete
         :return:
         """
-        priority = "c"
+        self.status = "c"
