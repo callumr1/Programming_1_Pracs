@@ -88,17 +88,24 @@ class ShoppingListApp(App):
         """
         Adds a new item
         """
-        name = self.root.ids.item_name.text
-        price = self.root.ids.item_price.text
-        priority = self.root.ids.item_priority.text
-        status = "r"
-        item = self.items.add_new_item(name, price, priority, status)
-        self.root.ids.status_bar.text = "Added {} - ${} to your shopping list".format(name, price, priority)
 
-        # Clear the input fields
-        self.root.ids.item_name.text = ''
-        self.root.ids.item_price.text = ''
-        self.root.ids.item_priority.text = ''
+        if self.root.ids.item_name.text == "" or self.root.ids.item_price.text == "" or self.root.ids.item_priority.text == "":
+            self.root.ids.status_bar.text = "Please fill all input fields before adding an item"
+        else:
+            name = self.root.ids.item_name.text
+            price = self.root.ids.item_price.text
+            priority = self.root.ids.item_priority.text
+            status = "r"
+            item = self.items.add_new_item(name, price, priority, status)
+            self.root.ids.status_bar.text = "Added {} - ${} to your shopping list".format(name, price, priority)
+
+            # Clear the input fields
+            self.root.ids.item_name.text = ''
+            self.root.ids.item_price.text = ''
+            self.root.ids.item_priority.text = ''
+
+            # Refresh the item widgets once the new item is added
+            self.handle_listRequired()
 
     def handle_clear(self):
         """

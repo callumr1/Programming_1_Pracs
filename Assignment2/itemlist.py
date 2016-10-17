@@ -5,7 +5,7 @@ from item import Item
 class ItemList:
     def __init__(self, name="", price=0, priority=1):
         self.items = []
-        self.items_as_lists = []
+
         self.name = name
 
     def add_item_lists(self, items_as_lists):
@@ -24,6 +24,7 @@ class ItemList:
         """
         Get Items as lists
         """
+        items_as_lists = []
 
         for item in self.items:
             items_as_lists.append([item.name, item.price, item.priority])
@@ -41,9 +42,7 @@ class ItemList:
         """
         Adds a single item object to the items list attributes
         """
-        new_item = [name, price, priority, status]
-        self.items_as_lists.append(new_item)
-        self.add_item_lists(self.items_as_lists)
+        self.items.append(Item(name, price, priority, status))
 
 
     def get_total_price(self):
