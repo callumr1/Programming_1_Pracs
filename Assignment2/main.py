@@ -1,8 +1,9 @@
 """ Callum Robertson
     10/10/16
-    Description
+    This program is a shopping list that loads items from a .csv file, and displays them using Kivy. The user is able to
+    add items and change items to completed. Required items are ordered depending on priority and are also colour coded.
+    The shopping list is then saved to the same .csv file upon closing.
     Link """
-# starting with importing from your first assignemnt, something like:
 
 from shopping_list_2 import load_items, save_items
 from kivy.app import App
