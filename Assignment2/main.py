@@ -18,8 +18,8 @@ class ShoppingListApp(App):
         self.title = "Shopping List"
         self.root = Builder.load_file('app.kv')
         self.items = ItemList()
-        items_as_list = load_items()
-        self.items.add_item_lists(items_as_list)
+        self.items_as_list = load_items()
+        self.items.add_item_lists(self.items_as_list)
         self.handle_listRequired()
         return self.root
 
@@ -136,6 +136,5 @@ class ShoppingListApp(App):
         self.root.ids.item_name.text = ''
         self.root.ids.item_price.text = ''
         self.root.ids.item_priority.text = ''
-
 
 ShoppingListApp().run()

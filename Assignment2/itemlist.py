@@ -27,7 +27,6 @@ class ItemList:
 
         for item in self.items:
             items_as_lists.append([item.name, item.price, item.priority])
-            items_as_lists.sort(item.priority)
         return items_as_lists
 
     def get_item_by_name(self, name):
