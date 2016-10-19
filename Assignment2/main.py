@@ -137,4 +137,9 @@ class ShoppingListApp(App):
         self.root.ids.item_price.text = ''
         self.root.ids.item_priority.text = ''
 
+    def on_stop(self):
+        # Save the items to the items.csv file
+        items = self.items.get_item_as_lists()
+        save_items(items)
+
 ShoppingListApp().run()

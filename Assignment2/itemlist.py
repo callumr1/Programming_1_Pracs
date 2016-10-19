@@ -19,14 +19,14 @@ class ItemList:
             self.items.append(i)
 
 
-    def get_item_as_lists(self, items_as_lists):
+    def get_item_as_lists(self):
         """
         Get Items as lists
         """
         items_as_lists = []
 
         for item in self.items:
-            items_as_lists.append([item.name, item.price, item.priority])
+            items_as_lists.append([item.name, str(item.price), str(item.priority), item.status])
         return items_as_lists
 
     def get_item_by_name(self, name):
