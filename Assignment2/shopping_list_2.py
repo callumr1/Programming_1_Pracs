@@ -150,7 +150,7 @@ close items.csv
 def load_items():
     # Loads all the items from items.csv at the beginning of the program
     items = []
-    list_file = open("items.csv", "r")
+    list_file = open("itemsbackup.csv", "r")
     for line in list_file:
         new_line = line.strip().split(",")
         items.append(new_line)

@@ -41,7 +41,16 @@ class ShoppingListApp(App):
         # create the widgets for the required items
         for item in self.items.items:
             if item.status == item_required:
-                self.temp_button = Button(text=item.name)
+                # Determines the color of the button depending on the items priority
+                if item.priority == "1":
+                    color = (255, 0, 0, 0.6)
+                elif item.priority == "2":
+                    color = (0, 255, 0, 0.6)
+                else:
+                    color = (0, 0, 255, 0.6)
+
+                self.items.sort_items_by_priority(item.priority)
+                self.temp_button = Button(text=item.name, background_color=color)
                 self.temp_button.bind(on_release=self.click_required_item)
                 self.root.ids.items_list_display.add_widget(self.temp_button)
 
@@ -80,9 +89,10 @@ class ShoppingListApp(App):
         self.root.ids.status_bar.text = "Click an item to see its details"
 
     def click_completed_item(self, instance):
+        # Changes the item that was clicked from required to completed
         name = instance.text
         item = self.items.get_item_by_name(name)
-        self.root.ids.status_bar.text = "{}, ${}, priority {} (completed)".format(item.name, item.price, item.priority)
+        self.root.ids.status_bar.text = "{}, ${:.2f}, priority {} (completed)".format(item.name, float(item.price), item.priority)
 
     def handle_addItem(self):
         """
@@ -91,21 +101,33 @@ class ShoppingListApp(App):
 
         if self.root.ids.item_name.text == "" or self.root.ids.item_price.text == "" or self.root.ids.item_priority.text == "":
             self.root.ids.status_bar.text = "Please fill all input fields before adding an item"
-        else:
-            name = self.root.ids.item_name.text
-            price = self.root.ids.item_price.text
-            priority = self.root.ids.item_priority.text
-            status = "r"
-            item = self.items.add_new_item(name, price, priority, status)
-            self.root.ids.status_bar.text = "Added {} - ${} to your shopping list".format(name, price, priority)
-
             # Clear the input fields
-            self.root.ids.item_name.text = ''
-            self.root.ids.item_price.text = ''
-            self.root.ids.item_priority.text = ''
+            self.handle_clear()
+        else:
+            if self.root.ids.item_priority.text == "1" or self.root.ids.item_priority.text == "2" or self.root.ids.item_priority.text == "3":
+                try:
+                    price = float(self.root.ids.item_price.text)
+                    if re.match(r'^\d+$', self.root.ids.item_name.text):
+                        self.root.ids.status_bar.text = "Item name must not be a number"
+                        self.handle_clear()
+                    else:
+                        name = self.root.ids.item_name.text
+                        price = float(self.root.ids.item_price.text)
+                        priority = self.root.ids.item_priority.text
+                        status = "r"
+                        item = self.items.add_new_item(name, price, priority, status)
+                        self.root.ids.status_bar.text = "Added {} - ${} to your shopping list".format(name, price, priority)
+                        self.handle_clear()
 
-            # Refresh the item widgets once the new item is added
-            self.handle_listRequired()
+                        # Refresh the item widgets once the new item is added
+                        self.handle_listRequired()
+                except ValueError:
+                    self.root.ids.status_bar.text = "The price must be a float"
+                    self.handle_clear()
+            else:
+                self.root.ids.status_bar.text = "The item priority can only be 1, 2 or 3"
+                self.handle_clear()
+
 
     def handle_clear(self):
         """
@@ -114,5 +136,6 @@ class ShoppingListApp(App):
         self.root.ids.item_name.text = ''
         self.root.ids.item_price.text = ''
         self.root.ids.item_priority.text = ''
+
 
 ShoppingListApp().run()

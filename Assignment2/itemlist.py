@@ -5,7 +5,6 @@ from item import Item
 class ItemList:
     def __init__(self, name="", price=0, priority=1):
         self.items = []
-
         self.name = name
 
     def add_item_lists(self, items_as_lists):
@@ -28,6 +27,7 @@ class ItemList:
 
         for item in self.items:
             items_as_lists.append([item.name, item.price, item.priority])
+            items_as_lists.sort(item.priority)
         return items_as_lists
 
     def get_item_by_name(self, name):
@@ -55,10 +55,15 @@ class ItemList:
             if item.status == item_required:
                 total_price += float(item.price)
         return total_price
+    
+    def get_button_colour(self, priority):
+        if priority == 1:
+            color = (255, 0, 0, 0.6)
+        elif priority ==2:
+            color = (0, 255, 0, 0.6)
+        else:
+            color = (0,0,255, 0.6)
+        return color
 
-
-
-
-
-
-
+    def sort_items_by_priority(self, priority):
+        self.items.sort(key=lambda items: items.priority)
