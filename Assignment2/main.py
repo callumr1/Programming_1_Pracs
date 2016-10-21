@@ -95,7 +95,8 @@ class ShoppingListApp(App):
         # Changes the item that was clicked from required to completed
         name = instance.text
         item = self.items.get_item_by_name(name)
-        self.root.ids.status_bar.text = "{}, ${:.2f}, priority {} (completed)".format(item.name, float(item.price), item.priority)
+        self.root.ids.status_bar.text = "{}, ${:.2f}, priority {} (completed)".format(item.name, float(item.price),
+                                                                                      item.priority)
 
     def handle_addItem(self):
         """
@@ -119,7 +120,8 @@ class ShoppingListApp(App):
                         priority = self.root.ids.item_priority.text
                         status = "r"
                         item = self.items.add_new_item(name, price, priority, status)
-                        self.root.ids.status_bar.text = "Added {} - ${} to your shopping list".format(name, price, priority)
+                        self.root.ids.status_bar.text = "Added {} - ${} to your shopping list".format(name, price,
+                                                                                                      priority)
                         self.handle_clear()
 
                         # Refresh the item widgets once the new item is added
@@ -130,7 +132,6 @@ class ShoppingListApp(App):
             else:
                 self.root.ids.status_bar.text = "The item priority can only be 1, 2 or 3"
                 self.handle_clear()
-
 
     def handle_clear(self):
         """
@@ -144,5 +145,6 @@ class ShoppingListApp(App):
         # Save the items to the items.csv file
         items = self.items.get_item_as_lists()
         save_items(items)
+
 
 ShoppingListApp().run()

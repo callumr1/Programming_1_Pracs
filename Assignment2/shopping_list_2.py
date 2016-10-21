@@ -103,7 +103,6 @@ def refine_items(items, item_needed):
     sorted_items = sorted(items, key=lambda item: item[2])
     for item in sorted_items:
         if item_needed in item:
-
             print('{:20} $ {:6.2f} {:>3}{}{}'.format(str(item[0]), float(item[1]), "(", int(item[2]), ")"))
             total_cost += float(item[1])
     print("{:20} $ {:6.2f}".format("The total cost is:", total_cost))
@@ -157,6 +156,6 @@ def load_items():
     list_file.close()
     return items
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     main()

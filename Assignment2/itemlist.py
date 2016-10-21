@@ -2,6 +2,7 @@
 
 from item import Item
 
+
 class ItemList:
     def __init__(self, name="", price=0, priority=1):
         self.items = []
@@ -17,7 +18,6 @@ class ItemList:
         for item_as_list in items_as_lists:
             i = Item(*item_as_list)
             self.items.append(i)
-
 
     def get_item_as_lists(self):
         """
@@ -43,7 +43,6 @@ class ItemList:
         """
         self.items.append(Item(name, price, priority, status))
 
-
     def get_total_price(self):
         """
         Gets the total price of all the items
@@ -54,14 +53,14 @@ class ItemList:
             if item.status == item_required:
                 total_price += float(item.price)
         return total_price
-    
+
     def get_button_colour(self, priority):
         if priority == 1:
             color = (255, 0, 0, 0.6)
-        elif priority ==2:
+        elif priority == 2:
             color = (0, 255, 0, 0.6)
         else:
-            color = (0,0,255, 0.6)
+            color = (0, 0, 255, 0.6)
         return color
 
     def sort_items_by_priority(self, priority):
