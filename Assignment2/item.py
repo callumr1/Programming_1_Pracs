@@ -1,5 +1,3 @@
-# create your Item class here
-
 class Item:
     def __init__(self, name="", price=0.0, priority=1, status='r'):
         self.name = name

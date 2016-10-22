@@ -1,5 +1,3 @@
-# create your ItemList class here
-
 from item import Item
 
 

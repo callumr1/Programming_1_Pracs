@@ -5,6 +5,7 @@ This program is a shopping list that loads items from a .csv file, and displays 
 add items and change items to completed. Required items are ordered depending on priority and are also colour coded.
 The shopping list is then saved to the same .csv file upon closing.
 Link: https://github.com/callumr1/Programming_1_Pracs/tree/master/Assignment2
+      https://github.com/CP1404-2016-2/a2-callumr1
 """
 
 from shopping_list_2 import load_items, save_items
